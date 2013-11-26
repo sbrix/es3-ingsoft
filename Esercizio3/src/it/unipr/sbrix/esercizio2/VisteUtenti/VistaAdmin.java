@@ -24,7 +24,6 @@ public class VistaAdmin extends VistaOperatore {
 	 * Create the frame.
 	 */
 
-	@SuppressWarnings("static-access")
 	public VistaAdmin(int ut, int id, Agenzia ag) {
 		super(ut, id, ag);
 		lblShowmode.setText("Amministratore");

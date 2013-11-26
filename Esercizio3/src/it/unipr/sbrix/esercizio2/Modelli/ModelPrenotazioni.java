@@ -51,7 +51,6 @@ public class ModelPrenotazioni extends RowTableModel<Prenotazione> implements
 		// TODO Auto-generated constructor stub
 	}
 
-	@SuppressWarnings("static-access")
 	@Override
 	public synchronized void addItem(Object item) {
 		// TODO Auto-generated method stub
