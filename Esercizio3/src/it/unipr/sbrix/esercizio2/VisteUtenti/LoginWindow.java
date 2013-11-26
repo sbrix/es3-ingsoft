@@ -167,14 +167,18 @@ public class LoginWindow {
 			case Utente.CLIENTE: {
 				userFound = true;
 				System.out.println("avvio come utente ->id:" + id);
-				System.out.println("numero thread:"+Thread.activeCount());
+				System.out.println("numero thread:" + Thread.activeCount());
 				Thread t = new Thread(new Runnable() {
 					public void run() {
 						try {
 							UIManager.setLookAndFeel(UIManager
 									.getSystemLookAndFeelClassName());
-							VistaCliente frameCliente = new VistaCliente(utente
-									.getUserType(), utente.getId(), agenzia);
+							VistaCliente frameCliente = new VistaCliente(
+									utente.getUserType(), utente.getId(),
+									agenzia);
+							long threadId = Thread.currentThread().getId();
+							System.out.println("Thread # " + threadId
+									+ " is client view");
 
 							frameCliente.setVisible(true);
 
@@ -184,35 +188,35 @@ public class LoginWindow {
 					}
 				});
 				t.start();
-				/*EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							UIManager.setLookAndFeel(UIManager
-									.getSystemLookAndFeelClassName());
-							VistaCliente frameCliente = new VistaCliente(utente
-									.getUserType(), utente.getId(), agenzia);
-
-							frameCliente.setVisible(true);
-
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});*/
+				/*
+				 * EventQueue.invokeLater(new Runnable() { public void run() {
+				 * try { UIManager.setLookAndFeel(UIManager
+				 * .getSystemLookAndFeelClassName()); VistaCliente frameCliente
+				 * = new VistaCliente(utente .getUserType(), utente.getId(),
+				 * agenzia);
+				 * 
+				 * frameCliente.setVisible(true);
+				 * 
+				 * } catch (Exception e) { e.printStackTrace(); } } });
+				 */
 
 				// frmLogin.setVisible(false);
 				break;
 			}
 			case Utente.OPERATORE: {
 				userFound = true;
-				System.out.println("numero thread:"+Thread.activeCount());
+				System.out.println("numero thread:" + Thread.activeCount());
 				Thread t = new Thread(new Runnable() {
 					public void run() {
 						try {
 							UIManager.setLookAndFeel(UIManager
 									.getSystemLookAndFeelClassName());
-							VistaOperatore frameOp = new VistaOperatore(utente
-									.getUserType(), utente.getId(), agenzia);
+							VistaOperatore frameOp = new VistaOperatore(
+									utente.getUserType(), utente.getId(),
+									agenzia);
+							long threadId = Thread.currentThread().getId();
+							System.out.println("Thread # " + threadId
+									+ " is operator view");
 
 							frameOp.setVisible(true);
 
@@ -222,21 +226,17 @@ public class LoginWindow {
 					}
 				});
 				t.start();
-				/*EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							UIManager.setLookAndFeel(UIManager
-									.getSystemLookAndFeelClassName());
-							VistaOperatore frameOp = new VistaOperatore(utente
-									.getUserType(), utente.getId(), agenzia);
-
-							frameOp.setVisible(true);
-
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});*/
+				/*
+				 * EventQueue.invokeLater(new Runnable() { public void run() {
+				 * try { UIManager.setLookAndFeel(UIManager
+				 * .getSystemLookAndFeelClassName()); VistaOperatore frameOp =
+				 * new VistaOperatore(utente .getUserType(), utente.getId(),
+				 * agenzia);
+				 * 
+				 * frameOp.setVisible(true);
+				 * 
+				 * } catch (Exception e) { e.printStackTrace(); } } });
+				 */
 
 				// frmLogin.setVisible(false);
 				break;
@@ -244,7 +244,7 @@ public class LoginWindow {
 			}
 			case Utente.ADMIN: {
 				userFound = true;
-				System.out.println("numero thread:"+Thread.activeCount());
+				System.out.println("numero thread:" + Thread.activeCount());
 				/*
 				 * VistaAdmin frameAdmin = new VistaAdmin(utente.getUserType(),
 				 * utente.getId(), agenzia);
@@ -257,9 +257,14 @@ public class LoginWindow {
 						try {
 							UIManager.setLookAndFeel(UIManager
 									.getSystemLookAndFeelClassName());
-							VistaAdmin frameAdmin = new VistaAdmin(utente
-									.getUserType(), utente.getId(), agenzia);
-							System.out.println("numero thread admin:"+Thread.activeCount());
+							VistaAdmin frameAdmin = new VistaAdmin(
+									utente.getUserType(), utente.getId(),
+									agenzia);
+							System.out.println("numero thread admin:"
+									+ Thread.activeCount());
+							long threadId = Thread.currentThread().getId();
+							System.out.println("Thread # " + threadId
+									+ " is admin view");
 
 							frameAdmin.setVisible(true);
 
@@ -269,21 +274,17 @@ public class LoginWindow {
 					}
 				});
 				t.start();
-				/*EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							UIManager.setLookAndFeel(UIManager
-									.getSystemLookAndFeelClassName());
-							VistaAdmin frameAdmin = new VistaAdmin(utente
-									.getUserType(), utente.getId(), agenzia);
-
-							frameAdmin.setVisible(true);
-
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});*/
+				/*
+				 * EventQueue.invokeLater(new Runnable() { public void run() {
+				 * try { UIManager.setLookAndFeel(UIManager
+				 * .getSystemLookAndFeelClassName()); VistaAdmin frameAdmin =
+				 * new VistaAdmin(utente .getUserType(), utente.getId(),
+				 * agenzia);
+				 * 
+				 * frameAdmin.setVisible(true);
+				 * 
+				 * } catch (Exception e) { e.printStackTrace(); } } });
+				 */
 
 			}
 			}

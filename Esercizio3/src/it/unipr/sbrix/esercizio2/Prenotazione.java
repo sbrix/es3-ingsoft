@@ -12,6 +12,7 @@ public class Prenotazione extends ViaggioOrganizzato implements Serializable {
 
 	public int idOperatore = 0;
 	public long scadenza = 0;
+
 	public Prenotazione() {
 		super();
 		// TODO Auto-generated constructor stub

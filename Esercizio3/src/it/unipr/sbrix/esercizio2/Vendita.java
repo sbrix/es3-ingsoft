@@ -12,6 +12,7 @@ public class Vendita extends ViaggioOrganizzato implements Serializable {
 	public Utente cliente = new Utente();
 
 	public int idOperatore = 0;
+
 	public Vendita() {
 		super();
 		// TODO Auto-generated constructor stub
