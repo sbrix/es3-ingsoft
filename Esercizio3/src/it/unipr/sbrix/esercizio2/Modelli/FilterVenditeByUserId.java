@@ -11,10 +11,6 @@ public class FilterVenditeByUserId extends RowFilter<ModelVendite, Integer> {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
 	@Override
 	public boolean include(
 			javax.swing.RowFilter.Entry<? extends ModelVendite, ? extends Integer> entry) {
@@ -24,6 +20,10 @@ public class FilterVenditeByUserId extends RowFilter<ModelVendite, Integer> {
 		if (vendita.cliente.getId() == this.userId)
 			return true;
 		return false;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 }

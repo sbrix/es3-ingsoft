@@ -30,6 +30,18 @@ public class Utente implements Serializable, Comparable<Utente> {
 
 	};
 
+	@Override
+	public int compareTo(Utente o) {
+		// TODO Auto-generated method stub
+		if (this.getId() > o.getId())
+			return 1;
+		if (this.getId() < o.getId())
+			return -1;
+		if (this.getId() == o.getId())
+			return 0;
+		return 0;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -66,17 +78,5 @@ public class Utente implements Serializable, Comparable<Utente> {
 		default:
 			return null;
 		}
-	}
-
-	@Override
-	public int compareTo(Utente o) {
-		// TODO Auto-generated method stub
-		if (this.getId() > o.getId())
-			return 1;
-		if (this.getId() < o.getId())
-			return -1;
-		if (this.getId() == o.getId())
-			return 0;
-		return 0;
 	}
 }

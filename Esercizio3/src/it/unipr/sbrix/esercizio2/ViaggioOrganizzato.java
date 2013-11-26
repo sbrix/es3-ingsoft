@@ -4,15 +4,6 @@ import java.io.Serializable;
 
 public class ViaggioOrganizzato implements Serializable,
 		Comparable<ViaggioOrganizzato> {
-	public ViaggioOrganizzato() {
-		super();
-
-		this.andata = new Volo();
-		this.ritorno = new Volo();
-		this.hotel = new Hotel();
-
-	}
-
 	/**
 	 * 
 	 */
@@ -20,25 +11,19 @@ public class ViaggioOrganizzato implements Serializable,
 
 	protected int id = 0;
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public Volo andata, ritorno;
 
 	public Hotel hotel;
 
 	public int durataPernottamento = 0;
 
-	public int getId() {
-		return id;
-	}
+	public ViaggioOrganizzato() {
+		super();
 
-	@Override
-	public String toString() {
-		return "ViaggiOrganizzati [andata=" + andata.toString() + ", ritorno="
-				+ ritorno.toString() + ", hotel=" + hotel.toString()
-				+ ", durataPernottamento=" + durataPernottamento + "]";
+		this.andata = new Volo();
+		this.ritorno = new Volo();
+		this.hotel = new Hotel();
+
 	}
 
 	@Override
@@ -51,6 +36,21 @@ public class ViaggioOrganizzato implements Serializable,
 		if (this.id < o.getId())
 			return -1;
 		return 0;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "ViaggiOrganizzati [andata=" + andata.toString() + ", ritorno="
+				+ ritorno.toString() + ", hotel=" + hotel.toString()
+				+ ", durataPernottamento=" + durataPernottamento + "]";
 	}
 
 }

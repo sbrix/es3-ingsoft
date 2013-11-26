@@ -167,66 +167,68 @@ public class LoginWindow {
 			case Utente.CLIENTE: {
 				userFound = true;
 				System.out.println("avvio come utente ->id:" + id);
-				
+
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
 							UIManager.setLookAndFeel(UIManager
 									.getSystemLookAndFeelClassName());
-							VistaCliente frameCliente = new VistaCliente(
-									utente.getUserType(), utente.getId(), agenzia);
+							VistaCliente frameCliente = new VistaCliente(utente
+									.getUserType(), utente.getId(), agenzia);
 
 							frameCliente.setVisible(true);
-							
+
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
 					}
 				});
 
-				//frmLogin.setVisible(false);
+				// frmLogin.setVisible(false);
 				break;
 			}
 			case Utente.OPERATORE: {
 				userFound = true;
-				
+
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
 							UIManager.setLookAndFeel(UIManager
 									.getSystemLookAndFeelClassName());
-							VistaOperatore frameOp = new VistaOperatore(
-									utente.getUserType(), utente.getId(), agenzia);
+							VistaOperatore frameOp = new VistaOperatore(utente
+									.getUserType(), utente.getId(), agenzia);
 
 							frameOp.setVisible(true);
-							
+
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
 					}
 				});
-				
-				//frmLogin.setVisible(false);
+
+				// frmLogin.setVisible(false);
 				break;
 
 			}
 			case Utente.ADMIN: {
 				userFound = true;
-				/*VistaAdmin frameAdmin = new VistaAdmin(utente.getUserType(),
-						utente.getId(), agenzia);
-
-				frameAdmin.setVisible(true);*/
-				//frmLogin.setVisible(false);
+				/*
+				 * VistaAdmin frameAdmin = new VistaAdmin(utente.getUserType(),
+				 * utente.getId(), agenzia);
+				 * 
+				 * frameAdmin.setVisible(true);
+				 */
+				// frmLogin.setVisible(false);
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
 							UIManager.setLookAndFeel(UIManager
 									.getSystemLookAndFeelClassName());
-							VistaAdmin frameAdmin = new VistaAdmin(utente.getUserType(),
-									utente.getId(), agenzia);
+							VistaAdmin frameAdmin = new VistaAdmin(utente
+									.getUserType(), utente.getId(), agenzia);
 
 							frameAdmin.setVisible(true);
-							
+
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

@@ -72,7 +72,7 @@ public class VistaGestioneVoli extends JPanel {
 		gbc_panelLista.gridy = 0;
 		add(panelLista, gbc_panelLista);
 		panelLista.setLayout(new BoxLayout(panelLista, BoxLayout.Y_AXIS));
-		
+
 		lblGestioneVoli.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		panelLista.add(lblGestioneVoli);

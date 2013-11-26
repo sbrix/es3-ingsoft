@@ -55,6 +55,20 @@ public class ModelVoli extends RowTableModel<Volo> implements InitModel,
 
 	}
 
+	public synchronized void addUpdateEventListener(ModelListener listener) {
+		listenerList.add(ModelListener.class, listener);
+	}
+
+	private void fireUpdateEvent(ModelEvent evt) {
+		Object[] listeners = listenerList.getListenerList();
+		System.out.println("update volo");
+		for (int i = 0; i < listeners.length; i = i + 2) {
+			if (listeners[i] == ModelListener.class) {
+				((ModelListener) listeners[i + 1]).updateEventOccurred(evt);
+			}
+		}
+	}
+
 	@Override
 	public synchronized Object getItem(int id) {
 		// TODO Auto-generated method stub
@@ -195,22 +209,8 @@ public class ModelVoli extends RowTableModel<Volo> implements InitModel,
 
 	}
 
-	public synchronized void addUpdateEventListener(ModelListener listener) {
-		listenerList.add(ModelListener.class, listener);
-	}
-
 	public synchronized void removeMyEventListener(ModelListener listener) {
 		listenerList.remove(ModelListener.class, listener);
-	}
-
-	private void fireUpdateEvent(ModelEvent evt) {
-		Object[] listeners = listenerList.getListenerList();
-		System.out.println("update volo");
-		for (int i = 0; i < listeners.length; i = i + 2) {
-			if (listeners[i] == ModelListener.class) {
-				((ModelListener) listeners[i + 1]).updateEventOccurred(evt);
-			}
-		}
 	}
 
 }

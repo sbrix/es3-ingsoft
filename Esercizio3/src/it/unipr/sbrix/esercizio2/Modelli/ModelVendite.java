@@ -45,6 +45,42 @@ public class ModelVendite extends RowTableModel<Vendita> implements EditModel,
 
 	}
 
+	@Override
+	public synchronized void addItem(Object item) {
+		// TODO Auto-generated method stub
+		Vendita vendita = (Vendita) item;
+		vendita.setId(getNewId());
+		listaVendite.add(vendita);
+		Agenzia.saveToFile(fileVendite, listaVendite);
+		Agenzia.saveToFile(fileIdVendite, this.idGlobaleVendite);
+		fireUpdateEvent(new ModelEvent(this));
+
+	}
+
+	public synchronized void addUpdateEventListener(ModelListener listener) {
+		listenerList.add(ModelListener.class, listener);
+	}
+
+	private void fireUpdateEvent(ModelEvent evt) {
+		Object[] listeners = listenerList.getListenerList();
+		System.out.println("update vendite");
+		for (int i = 0; i < listeners.length; i = i + 2) {
+			if (listeners[i] == ModelListener.class) {
+				((ModelListener) listeners[i + 1]).updateEventOccurred(evt);
+			}
+		}
+	}
+
+	@Override
+	public synchronized Object getItem(int id) {
+		// TODO Auto-generated method stub
+		for (Vendita i : listaVendite) {
+			if (i.getId() == id)
+				return i;
+		}
+		return null;
+	}
+
 	private synchronized int getNewId() {
 		return this.idGlobaleVendite++;
 	}
@@ -177,28 +213,6 @@ public class ModelVendite extends RowTableModel<Vendita> implements EditModel,
 	}
 
 	@Override
-	public synchronized void addItem(Object item) {
-		// TODO Auto-generated method stub
-		Vendita vendita = (Vendita) item;
-		vendita.setId(getNewId());
-		listaVendite.add(vendita);
-		Agenzia.saveToFile(fileVendite, listaVendite);
-		Agenzia.saveToFile(fileIdVendite, this.idGlobaleVendite);
-		fireUpdateEvent(new ModelEvent(this));
-
-	}
-
-	@Override
-	public synchronized Object getItem(int id) {
-		// TODO Auto-generated method stub
-		for (Vendita i : listaVendite) {
-			if (i.getId() == id)
-				return i;
-		}
-		return null;
-	}
-
-	@Override
 	public synchronized void removeItem(int id, int row) {
 		// TODO Auto-generated method stub
 		int index = 0;
@@ -215,22 +229,8 @@ public class ModelVendite extends RowTableModel<Vendita> implements EditModel,
 
 	}
 
-	public synchronized void addUpdateEventListener(ModelListener listener) {
-		listenerList.add(ModelListener.class, listener);
-	}
-
 	public synchronized void removeMyEventListener(ModelListener listener) {
 		listenerList.remove(ModelListener.class, listener);
-	}
-
-	private void fireUpdateEvent(ModelEvent evt) {
-		Object[] listeners = listenerList.getListenerList();
-		System.out.println("update vendite");
-		for (int i = 0; i < listeners.length; i = i + 2) {
-			if (listeners[i] == ModelListener.class) {
-				((ModelListener) listeners[i + 1]).updateEventOccurred(evt);
-			}
-		}
 	}
 
 }

@@ -48,7 +48,6 @@ public class VistaGestioneUtenti extends JPanel implements ActionListener {
 	@SuppressWarnings("serial")
 	public VistaGestioneUtenti(Agenzia agenzia) {
 
-		
 		ag = agenzia;
 
 		model = ag.modelUtenti;
@@ -75,7 +74,7 @@ public class VistaGestioneUtenti extends JPanel implements ActionListener {
 
 		GridBagConstraints gbc_panelList = new GridBagConstraints();
 		gbc_panelList.fill = GridBagConstraints.BOTH;
-		//gbc_panelList.anchor = GridBagConstraints.NORTH;
+		// gbc_panelList.anchor = GridBagConstraints.NORTH;
 		gbc_panelList.insets = new Insets(0, 0, 0, 5);
 		gbc_panelList.gridx = 0;
 		gbc_panelList.gridy = 0;
@@ -90,7 +89,7 @@ public class VistaGestioneUtenti extends JPanel implements ActionListener {
 		scrollPane.setMinimumSize(new Dimension(780, 500));
 		panelList.add(scrollPane);
 
-		add(panelList,gbc_panelList);
+		add(panelList, gbc_panelList);
 
 		lblGestioneUtenti.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panelList.add(lblGestioneUtenti);
@@ -119,7 +118,7 @@ public class VistaGestioneUtenti extends JPanel implements ActionListener {
 		btnRimuovi = new JButton("Rimuovi");
 		btnRimuovi.addActionListener(this);
 		panelButtons.add(btnRimuovi);
-		
+
 		this.revalidate();
 		this.repaint();
 		this.setVisible(true);

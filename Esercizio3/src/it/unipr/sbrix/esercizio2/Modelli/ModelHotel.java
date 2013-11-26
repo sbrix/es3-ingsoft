@@ -33,16 +33,53 @@ public class ModelHotel extends RowTableModel<Hotel> implements InitModel,
 	private int idGlobaleHotel;
 	protected static EventListenerList listenerList = new EventListenerList();
 
-	private synchronized int getNewId() {
-		return idGlobaleHotel++;
-	}
-
 	public ModelHotel() {
 		super(Arrays.asList(COLUMN_NAMES));
 		setRowClass(Hotel.class);
 		initFromFile();
 		initModel();
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void addItem(Object item) {
+		// TODO Auto-generated method stub
+		Hotel hotel = (Hotel) item;
+		hotel.setId(getNewId());
+		listaHotel.add(hotel);
+		Agenzia.saveToFile(fileHotel, listaHotel);
+		Agenzia.saveToFile(fileIdHotel, this.idGlobaleHotel);
+		addRow(hotel);
+		fireUpdateEvent(new ModelEvent(this));
+
+	}
+
+	public synchronized void addUpdateEventListener(ModelListener listener) {
+		listenerList.add(ModelListener.class, listener);
+	}
+
+	private void fireUpdateEvent(ModelEvent evt) {
+		Object[] listeners = listenerList.getListenerList();
+		System.out.println("update hotel");
+		for (int i = 0; i < listeners.length; i = i + 2) {
+			if (listeners[i] == ModelListener.class) {
+				((ModelListener) listeners[i + 1]).updateEventOccurred(evt);
+			}
+		}
+	}
+
+	@Override
+	public synchronized Object getItem(int id) {
+		// TODO Auto-generated method stub
+		for (Hotel i : listaHotel) {
+			if (i.getId() == id)
+				return i;
+		}
+		return null;
+	}
+
+	private synchronized int getNewId() {
+		return idGlobaleHotel++;
 	}
 
 	@Override
@@ -63,46 +100,6 @@ public class ModelHotel extends RowTableModel<Hotel> implements InitModel,
 		default:
 			return null;
 		}
-
-	}
-
-	@Override
-	public void addItem(Object item) {
-		// TODO Auto-generated method stub
-		Hotel hotel = (Hotel) item;
-		hotel.setId(getNewId());
-		listaHotel.add(hotel);
-		Agenzia.saveToFile(fileHotel, listaHotel);
-		Agenzia.saveToFile(fileIdHotel, this.idGlobaleHotel);
-		addRow(hotel);
-		fireUpdateEvent(new ModelEvent(this));
-
-	}
-
-	@Override
-	public synchronized Object getItem(int id) {
-		// TODO Auto-generated method stub
-		for (Hotel i : listaHotel) {
-			if (i.getId() == id)
-				return i;
-		}
-		return null;
-	}
-
-	@Override
-	public synchronized void removeItem(int id, int row) {
-		// TODO Auto-generated method stub
-		int index = 0;
-		for (Hotel i : listaHotel) {
-			if (i.getId() == id) {
-				listaHotel.remove(index);
-				Agenzia.saveToFile(fileHotel, listaHotel);
-				break;
-			}
-			index++;
-		}
-		removeRowRange(row, row);
-		fireUpdateEvent(new ModelEvent(this));
 
 	}
 
@@ -195,22 +192,25 @@ public class ModelHotel extends RowTableModel<Hotel> implements InitModel,
 
 	}
 
-	public synchronized void addUpdateEventListener(ModelListener listener) {
-		listenerList.add(ModelListener.class, listener);
+	@Override
+	public synchronized void removeItem(int id, int row) {
+		// TODO Auto-generated method stub
+		int index = 0;
+		for (Hotel i : listaHotel) {
+			if (i.getId() == id) {
+				listaHotel.remove(index);
+				Agenzia.saveToFile(fileHotel, listaHotel);
+				break;
+			}
+			index++;
+		}
+		removeRowRange(row, row);
+		fireUpdateEvent(new ModelEvent(this));
+
 	}
 
 	public synchronized void removeMyEventListener(ModelListener listener) {
 		listenerList.remove(ModelListener.class, listener);
-	}
-
-	private void fireUpdateEvent(ModelEvent evt) {
-		Object[] listeners = listenerList.getListenerList();
-		System.out.println("update hotel");
-		for (int i = 0; i < listeners.length; i = i + 2) {
-			if (listeners[i] == ModelListener.class) {
-				((ModelListener) listeners[i + 1]).updateEventOccurred(evt);
-			}
-		}
 	}
 
 }

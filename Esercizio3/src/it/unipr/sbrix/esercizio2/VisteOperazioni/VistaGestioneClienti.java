@@ -37,7 +37,7 @@ public class VistaGestioneClienti extends JPanel implements ActionListener {
 	private JButton btnRimuovi = null;
 	private Agenzia ag = null;
 	private final JLabel label = new JLabel("Gestione Utenti");
-	private JTable table =null;
+	private JTable table = null;
 	private final JScrollPane scrollPane = new JScrollPane();
 
 	/**
@@ -71,18 +71,18 @@ public class VistaGestioneClienti extends JPanel implements ActionListener {
 
 		GridBagConstraints gbc_panelList = new GridBagConstraints();
 		gbc_panelList.fill = GridBagConstraints.BOTH;
-		//gbc_panelList.anchor = GridBagConstraints.NORTH;
+		// gbc_panelList.anchor = GridBagConstraints.NORTH;
 		gbc_panelList.insets = new Insets(0, 0, 0, 5);
 		gbc_panelList.gridx = 0;
 		gbc_panelList.gridy = 0;
 		add(panelList, gbc_panelList);
 		panelList.setLayout(new BoxLayout(panelList, BoxLayout.Y_AXIS));
-		
-		add(panelList,gbc_panelList);
+
+		add(panelList, gbc_panelList);
 		label.setAlignmentX(0.5f);
-		
+
 		panelList.add(label);
-		
+
 		panelList.add(scrollPane);
 		scrollPane.setViewportView(table);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

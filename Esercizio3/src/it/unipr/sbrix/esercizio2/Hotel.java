@@ -16,6 +16,18 @@ public class Hotel implements Serializable, Comparable<Hotel> {
 	public String citta;
 	public String nazione;
 
+	@Override
+	public int compareTo(Hotel o) {
+		// TODO Auto-generated method stub
+		if (this.id > o.getId())
+			return 1;
+		if (this.id == o.getId())
+			return 0;
+		if (this.id < o.getId())
+			return -1;
+		return 0;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -28,18 +40,6 @@ public class Hotel implements Serializable, Comparable<Hotel> {
 	public String toString() {
 		return "Hotel [nome=" + nome + ", via=" + via + ", citta=" + citta
 				+ ", nazione=" + nazione + "]";
-	}
-
-	@Override
-	public int compareTo(Hotel o) {
-		// TODO Auto-generated method stub
-		if (this.id > o.getId())
-			return 1;
-		if (this.id == o.getId())
-			return 0;
-		if (this.id < o.getId())
-			return -1;
-		return 0;
 	}
 
 }

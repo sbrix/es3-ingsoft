@@ -51,6 +51,71 @@ public class ModelPrenotazioni extends RowTableModel<Prenotazione> implements
 		// TODO Auto-generated constructor stub
 	}
 
+	@SuppressWarnings("static-access")
+	@Override
+	public synchronized void addItem(Object item) {
+		// TODO Auto-generated method stub
+		Prenotazione prenotazione = (Prenotazione) item;
+		prenotazione.setId(getNewId());
+		prenotazione.scadenza = Calendar.getInstance().getTimeInMillis()
+				+ this.TRENTA_GIORNI_IN_MILLIS;
+		listaPrenotazioni.add(prenotazione);
+		Agenzia.saveToFile(filePrenotazioni, listaPrenotazioni);
+		Agenzia.saveToFile(fileIdPrenotazioni, this.idGlobalePrenotazioni);
+		fireUpdateEvent(new ModelEvent(this));
+
+	}
+
+	public synchronized void addUpdateEventListener(ModelListener listener) {
+		listenerList.add(ModelListener.class, listener);
+	}
+
+	private synchronized void controllaScadenzaPrenotazioni() {
+
+		// Controllo scadenza prenotazioni
+		int indice = 0;
+		boolean flag = false;
+
+		for (Prenotazione i : listaPrenotazioni) {
+
+			if (i.scadenza < (Calendar.getInstance().getTimeInMillis())) {
+				listaPrenotazioni.remove(indice);
+				flag = true;
+				// break;
+				// controllaScadenzaPrenotazioni();
+
+			}
+			if (flag)
+				break;
+			indice++;
+
+		}
+		// listaPrenotazioni = (ArrayList<Prenotazione>) listaTemp.clone();
+		Agenzia.saveToFile(filePrenotazioni, listaPrenotazioni);
+		if (flag)
+			controllaScadenzaPrenotazioni();
+	}
+
+	private void fireUpdateEvent(ModelEvent evt) {
+		Object[] listeners = listenerList.getListenerList();
+		System.out.println("update prenotazioni");
+		for (int i = 0; i < listeners.length; i = i + 2) {
+			if (listeners[i] == ModelListener.class) {
+				((ModelListener) listeners[i + 1]).updateEventOccurred(evt);
+			}
+		}
+	}
+
+	@Override
+	public synchronized Object getItem(int id) {
+		// TODO Auto-generated method stub
+		for (Prenotazione i : listaPrenotazioni) {
+			if (i.getId() == id)
+				return i;
+		}
+		return null;
+	}
+
 	private synchronized int getNewId() {
 		return idGlobalePrenotazioni++;
 	}
@@ -94,32 +159,6 @@ public class ModelPrenotazioni extends RowTableModel<Prenotazione> implements
 
 		}
 		return null;
-	}
-
-	private synchronized void controllaScadenzaPrenotazioni() {
-
-		// Controllo scadenza prenotazioni
-		int indice = 0;
-		boolean flag = false;
-
-		for (Prenotazione i : listaPrenotazioni) {
-
-			if (i.scadenza < (Calendar.getInstance().getTimeInMillis())) {
-				listaPrenotazioni.remove(indice);
-				flag = true;
-				// break;
-				// controllaScadenzaPrenotazioni();
-
-			}
-			if (flag)
-				break;
-			indice++;
-
-		}
-		// listaPrenotazioni = (ArrayList<Prenotazione>) listaTemp.clone();
-		Agenzia.saveToFile(filePrenotazioni, listaPrenotazioni);
-		if (flag)
-			controllaScadenzaPrenotazioni();
 	}
 
 	@Override
@@ -215,31 +254,6 @@ public class ModelPrenotazioni extends RowTableModel<Prenotazione> implements
 
 	}
 
-	@SuppressWarnings("static-access")
-	@Override
-	public synchronized void addItem(Object item) {
-		// TODO Auto-generated method stub
-		Prenotazione prenotazione = (Prenotazione) item;
-		prenotazione.setId(getNewId());
-		prenotazione.scadenza = Calendar.getInstance().getTimeInMillis()
-				+ this.TRENTA_GIORNI_IN_MILLIS;
-		listaPrenotazioni.add(prenotazione);
-		Agenzia.saveToFile(filePrenotazioni, listaPrenotazioni);
-		Agenzia.saveToFile(fileIdPrenotazioni, this.idGlobalePrenotazioni);
-		fireUpdateEvent(new ModelEvent(this));
-
-	}
-
-	@Override
-	public synchronized Object getItem(int id) {
-		// TODO Auto-generated method stub
-		for (Prenotazione i : listaPrenotazioni) {
-			if (i.getId() == id)
-				return i;
-		}
-		return null;
-	}
-
 	@Override
 	public synchronized void removeItem(int id, int row) {
 		// TODO Auto-generated method stub
@@ -257,22 +271,8 @@ public class ModelPrenotazioni extends RowTableModel<Prenotazione> implements
 
 	}
 
-	public synchronized void addUpdateEventListener(ModelListener listener) {
-		listenerList.add(ModelListener.class, listener);
-	}
-
 	public synchronized void removeMyEventListener(ModelListener listener) {
 		listenerList.remove(ModelListener.class, listener);
-	}
-
-	private void fireUpdateEvent(ModelEvent evt) {
-		Object[] listeners = listenerList.getListenerList();
-		System.out.println("update prenotazioni");
-		for (int i = 0; i < listeners.length; i = i + 2) {
-			if (listeners[i] == ModelListener.class) {
-				((ModelListener) listeners[i + 1]).updateEventOccurred(evt);
-			}
-		}
 	}
 
 }

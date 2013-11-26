@@ -13,10 +13,6 @@ public class FilterPrenotazioniByUserId extends
 		return userId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
 	@Override
 	public boolean include(
 			javax.swing.RowFilter.Entry<? extends ModelPrenotazioni, ? extends Integer> entry) {
@@ -33,6 +29,10 @@ public class FilterPrenotazioniByUserId extends
 		// if(prenotazione.cliente.getId()==entry.getIdentifier()) return true;
 		System.out.println("oggetto prenotazione vuoto");
 		return false;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 }
