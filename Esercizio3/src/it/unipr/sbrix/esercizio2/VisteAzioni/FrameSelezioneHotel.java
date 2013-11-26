@@ -68,6 +68,7 @@ public class FrameSelezioneHotel extends JFrame {
 
 		btnSeleziona = new JButton("Seleziona");
 		btnSeleziona.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (table.getSelectedRow() != -1) {
 					hotel[0] = (Hotel) ag.modelHotel

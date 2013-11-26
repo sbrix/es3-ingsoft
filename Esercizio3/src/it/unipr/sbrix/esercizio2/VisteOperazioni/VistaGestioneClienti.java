@@ -49,6 +49,7 @@ public class VistaGestioneClienti extends JPanel implements ActionListener {
 		ag = agenzia;
 		model = ag.modelClienti;
 		table = new JTable(model) {
+			@Override
 			public Component prepareRenderer(TableCellRenderer renderer,
 					int row, int column) {
 				Component c = super.prepareRenderer(renderer, row, column);

@@ -55,6 +55,7 @@ public class VistaGestionePrenotazioni extends JPanel {
 	public VistaGestionePrenotazioni(int uType, final int id, final Agenzia ag) {
 		table = new JTable(ag.modelPrenotazioni) {
 
+			@Override
 			public Component prepareRenderer(TableCellRenderer renderer,
 					int row, int column) {
 				Component c = super.prepareRenderer(renderer, row, column);
@@ -118,6 +119,7 @@ public class VistaGestionePrenotazioni extends JPanel {
 		gbc_panelButtons.gridy = 0;
 		add(panelButtons, gbc_panelButtons);
 		btnCompra.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				// trasforma prenotazione in vendita
 				if (table.getSelectedRow() != -1) {
@@ -143,6 +145,7 @@ public class VistaGestionePrenotazioni extends JPanel {
 
 		panelButtons.add(btnCompra);
 		btnRimuovi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				// rimuovi prenotazione
 				if (table.getSelectedRow() != -1) {
@@ -159,6 +162,7 @@ public class VistaGestionePrenotazioni extends JPanel {
 		panelButtons.add(btnAggiungi);
 
 		btnAggiungi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				// aggiungi prenotazione
 				FrameAggiungiPrenotazione frame = new FrameAggiungiPrenotazione(

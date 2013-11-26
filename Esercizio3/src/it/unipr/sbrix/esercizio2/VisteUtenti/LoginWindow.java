@@ -37,6 +37,7 @@ public class LoginWindow {
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					UIManager.setLookAndFeel(UIManager
@@ -119,6 +120,7 @@ public class LoginWindow {
 
 		passwordField = new JPasswordField();
 		passwordField.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				initUser();
 			}
@@ -132,6 +134,7 @@ public class LoginWindow {
 
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				initUser();
 
@@ -166,9 +169,13 @@ public class LoginWindow {
 			switch (utente.getUserType()) {
 			case Utente.CLIENTE: {
 				userFound = true;
+				textFieldUsername.setText(null);
+				passwordField.setText(null);
+				textFieldUsername.requestFocus();
 				System.out.println("avvio come utente ->id:" + id);
 				System.out.println("numero thread:" + Thread.activeCount());
 				Thread t = new Thread(new Runnable() {
+					@Override
 					public void run() {
 						try {
 							UIManager.setLookAndFeel(UIManager
@@ -205,8 +212,12 @@ public class LoginWindow {
 			}
 			case Utente.OPERATORE: {
 				userFound = true;
+				textFieldUsername.setText(null);
+				passwordField.setText(null);
+				textFieldUsername.requestFocus();
 				System.out.println("numero thread:" + Thread.activeCount());
 				Thread t = new Thread(new Runnable() {
+					@Override
 					public void run() {
 						try {
 							UIManager.setLookAndFeel(UIManager
@@ -244,6 +255,9 @@ public class LoginWindow {
 			}
 			case Utente.ADMIN: {
 				userFound = true;
+				textFieldUsername.setText(null);
+				passwordField.setText(null);
+				textFieldUsername.requestFocus();
 				System.out.println("numero thread:" + Thread.activeCount());
 				/*
 				 * VistaAdmin frameAdmin = new VistaAdmin(utente.getUserType(),
@@ -253,6 +267,7 @@ public class LoginWindow {
 				 */
 				// frmLogin.setVisible(false);
 				Thread t = new Thread(new Runnable() {
+					@Override
 					public void run() {
 						try {
 							UIManager.setLookAndFeel(UIManager
@@ -296,6 +311,7 @@ public class LoginWindow {
 					"Password o nome utente non valido"));
 			textFieldUsername.setText(null);
 			passwordField.setText(null);
+			textFieldUsername.requestFocus();
 		}
 	}
 

@@ -24,6 +24,7 @@ public class VistaOperatore extends VistaCliente {
 
 		JButton btnGestioneClienti = new JButton("Gestione Clienti");
 		btnGestioneClienti.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				panelVista.removeAll();
 				panelVista.add(new VistaGestioneClienti(ag));
@@ -35,6 +36,7 @@ public class VistaOperatore extends VistaCliente {
 
 		JButton btnGestioneHotel = new JButton("Gestione Hotel");
 		btnGestioneHotel.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				panelVista.removeAll();
 				panelVista
@@ -47,6 +49,7 @@ public class VistaOperatore extends VistaCliente {
 
 		JButton btnGestioneVoli = new JButton("Gestione Voli");
 		btnGestioneVoli.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				panelVista.removeAll();
 				panelVista
@@ -60,6 +63,7 @@ public class VistaOperatore extends VistaCliente {
 		JButton btnGestioneViaggiOrganizzati = new JButton(
 				"Gestione Viaggi Organizzati");
 		btnGestioneViaggiOrganizzati.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				panelVista.removeAll();
 				panelVista.add(new VistaGestioneViaggiOrganizzati(userType,

@@ -40,7 +40,7 @@ public class VistaAdmin extends VistaOperatore {
 		gbc_btnGestioneUtenti.insets = new Insets(0, 0, 0, 5);
 		gbc_btnGestioneUtenti.gridx = 0;
 		gbc_btnGestioneUtenti.gridy = 2;
-		gbc_btnGestioneUtenti.fill = gbc_btnGestioneUtenti.HORIZONTAL;
+		gbc_btnGestioneUtenti.fill = GridBagConstraints.HORIZONTAL;
 		btnGestioneUtenti.addActionListener(new ActionListener() {
 
 			@Override

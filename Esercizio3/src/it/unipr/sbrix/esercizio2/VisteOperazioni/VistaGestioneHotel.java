@@ -52,6 +52,7 @@ public class VistaGestioneHotel extends JPanel {
 	public VistaGestioneHotel(int uType, int id, final Agenzia ag) {
 		model = ag.modelHotel;
 		table = new JTable(model) {
+			@Override
 			public Component prepareRenderer(TableCellRenderer renderer,
 					int row, int column) {
 				Component c = super.prepareRenderer(renderer, row, column);
@@ -92,6 +93,7 @@ public class VistaGestioneHotel extends JPanel {
 
 		panelButtons.setLayout(new GridLayout(10, 1, 0, 0));
 		btnAggiungi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				FrameAggiungiHotel frame = new FrameAggiungiHotel(ag,
 						panelLista, model);
@@ -101,6 +103,7 @@ public class VistaGestioneHotel extends JPanel {
 
 		panelButtons.add(btnAggiungi);
 		btnRimuovi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (table.getSelectedRow() != -1) {
 					model.removeItem(

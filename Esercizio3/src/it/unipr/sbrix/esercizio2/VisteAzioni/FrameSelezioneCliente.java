@@ -67,6 +67,7 @@ public class FrameSelezioneCliente extends JFrame {
 
 		btnSeleziona = new JButton("Seleziona");
 		btnSeleziona.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (table.getSelectedRow() != -1) {
 					cliente[0] = (Utente) ag.modelClienti

@@ -8,6 +8,7 @@ import it.unipr.sbrix.esercizio2.VisteOperazioni.VistaGestioneVendite;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.GridBagLayout;
@@ -61,7 +62,7 @@ public class VistaCliente extends JFrame {
 		this.lblShowmode.setText("Utente");
 
 		setTitle("Agenzia");
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		setBounds(100, 100, 1024, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -114,6 +115,7 @@ public class VistaCliente extends JFrame {
 		JButton btnGestionePrenotazioni = new JButton("Gestione Prenotazioni");
 		btnGestionePrenotazioni.setPreferredSize(new Dimension(200, 100));
 		btnGestionePrenotazioni.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (agenzia != null)
 					gestionePrenotazione(userType, personalID, agenzia);
@@ -127,6 +129,7 @@ public class VistaCliente extends JFrame {
 		panelOperazioni.setLayout(new GridLayout(10, 1, 0, 0));
 		panelOperazioni.add(btnGestionePrenotazioni);
 		btnVisualizzaAcquisti.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (agenzia != null)
 					gestioneVendite(userType, personalID, agenzia);

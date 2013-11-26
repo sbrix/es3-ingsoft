@@ -43,6 +43,7 @@ public class VistaGestioneViaggiOrganizzati extends JPanel {
 	@SuppressWarnings("serial")
 	public VistaGestioneViaggiOrganizzati(int uType, int id, final Agenzia ag) {
 		table = new JTable(ag.modelViaggi) {
+			@Override
 			public Component prepareRenderer(TableCellRenderer renderer,
 					int row, int column) {
 				Component c = super.prepareRenderer(renderer, row, column);
@@ -83,6 +84,7 @@ public class VistaGestioneViaggiOrganizzati extends JPanel {
 
 		panelButtons.setLayout(new GridLayout(10, 1, 0, 0));
 		btnAggiungi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				FrameAggiungiViaggioOrganizzato frame = new FrameAggiungiViaggioOrganizzato(
 						ag);
@@ -92,6 +94,7 @@ public class VistaGestioneViaggiOrganizzati extends JPanel {
 
 		panelButtons.add(btnAggiungi);
 		btnRimuovi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (table.getSelectedRow() != -1) {
 					ag.modelViaggi.removeItem(

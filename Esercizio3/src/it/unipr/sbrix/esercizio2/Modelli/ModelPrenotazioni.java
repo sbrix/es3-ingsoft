@@ -58,7 +58,7 @@ public class ModelPrenotazioni extends RowTableModel<Prenotazione> implements
 		Prenotazione prenotazione = (Prenotazione) item;
 		prenotazione.setId(getNewId());
 		prenotazione.scadenza = Calendar.getInstance().getTimeInMillis()
-				+ this.TRENTA_GIORNI_IN_MILLIS;
+				+ ModelPrenotazioni.TRENTA_GIORNI_IN_MILLIS;
 		listaPrenotazioni.add(prenotazione);
 		Agenzia.saveToFile(filePrenotazioni, listaPrenotazioni);
 		Agenzia.saveToFile(fileIdPrenotazioni, this.idGlobalePrenotazioni);

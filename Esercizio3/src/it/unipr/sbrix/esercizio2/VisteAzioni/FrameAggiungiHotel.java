@@ -131,6 +131,7 @@ public class FrameAggiungiHotel extends JFrame {
 
 		JButton btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				Hotel hotel = new Hotel();
 				hotel.citta = textFieldCitta.getText();

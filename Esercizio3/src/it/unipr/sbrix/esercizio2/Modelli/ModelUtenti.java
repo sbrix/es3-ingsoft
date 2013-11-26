@@ -251,6 +251,7 @@ public class ModelUtenti extends RowTableModel<Utente> implements InitModel,
 
 	}
 
+	@Override
 	public synchronized void initModel() {
 
 		if (this.getRowCount() > 0) {

@@ -50,6 +50,7 @@ public class VistaGestioneVendite extends JPanel {
 	public VistaGestioneVendite(int uType, int id, final Agenzia ag) {
 
 		table = new JTable(ag.modelVendite) {
+			@Override
 			public Component prepareRenderer(TableCellRenderer renderer,
 					int row, int column) {
 				Component c = super.prepareRenderer(renderer, row, column);
@@ -101,6 +102,7 @@ public class VistaGestioneVendite extends JPanel {
 
 		panelButtons.setLayout(new GridLayout(10, 1, 0, 0));
 		btnRimuovi.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (table.getSelectedRow() != -1) {
 					ag.modelVendite.removeItem(
